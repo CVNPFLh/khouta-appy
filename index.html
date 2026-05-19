@@ -212,4 +212,208 @@
         }
 
         .circle-clicker {
-            width:
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #1f2937 0%, #111827 100%);
+            border: 3px solid var(--accent-gold);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--accent-gold);
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+            transition: all 0.1s ease;
+        }
+
+        .circle-clicker:active {
+            transform: scale(0.93);
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        .reset-btn {
+            background: none;
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 18px;
+            cursor: pointer;
+        }
+
+        /* كروت النصوص */
+        .content-card {
+            background-color: var(--card-bg);
+            border-right: 4px solid var(--accent-gold);
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .content-card h4 {
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .content-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* شريط التنقل السفلي الاحترافي الخماسي */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 2px solid var(--accent-gold);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+            z-index: 1000;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .nav-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 11px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 20%;
+            font-weight: 600;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item.active {
+            color: var(--accent-gold);
+        }
+
+        .nav-item.active i {
+            transform: translateY(-3px);
+            text-shadow: 0 0 12px var(--accent-glow);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>خُطى</h1>
+        <div class="date-container">
+            <span class="date-badge" id="hijri-box"><i class="fa-solid fa-calendar-days"></i> جاري تحديث التقويم الهجري...</span>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div id="quran-audio-page" class="page active">
+            <div class="section-title"><i class="fa-solid fa-volume-high"></i> الاستماع للمصحف الشريف</div>
+            <div class="premium-card">
+                <div class="input-group">
+                    <label>اختر القارئ المفضل:</label>
+                    <select id="reciter-select" onchange="updateQuranAudio()">
+                        <option value="https://server8.mp3quran.net/afs/">مشاري العفاسي</option>
+                        <option value="https://server11.mp3quran.net/muaiqly/">ماهر المعيقلي</option>
+                        <option value="https://server10.mp3quran.net/basit_mjwd/">عبد الباسط عبد الصمد</option>
+                        <option value="https://server12.mp3quran.net/minsh/">محمد صديق المنشاوي</option>
+                        <option value="https://server6.mp3quran.net/shur/">سعود الشريم</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>اختر السورة:</label>
+                    <select id="surah-select" onchange="updateQuranAudio()">
+                        <option value="001">1. الفاتحة</option>
+                        <option value="002">2. البقرة</option>
+                        <option value="003">3. آل عمران</option>
+                        <option value="018">18. الكهف</option>
+                        <option value="036">36. يس</option>
+                        <option value="055">55. الرحمن</option>
+                        <option value="056">56. الواقعة</option>
+                        <option value="067">67. الملك</option>
+                        <option value="112">112. الإخلاص</option>
+                        <option value="113">113. الفلق</option>
+                        <option value="114">114. الناس</option>
+                    </select>
+                </div>
+                <div class="audio-player-wrapper">
+                    <audio id="quran-player" controls src="https://server8.mp3quran.net/afs/001.mp3"></audio>
+                </div>
+            </div>
+        </div>
+
+        <div id="quran-text-page" class="page">
+            <div class="section-title"><i class="fa-solid fa-book-open"></i> المصحف المكتبوب (خط عثماني)</div>
+            <div class="premium-card">
+                <div class="input-group">
+                    <label>اختر السورة من المصحف (114 سورة):</label>
+                    <select id="surah-text-select" onchange="loadFullSurahText(this.value)">
+                        </select>
+                </div>
+                <div class="quran-text-area" id="quran-text-box">
+                    يرجى اختيار السورة المباركة لبدء القراءة...
+                </div>
+            </div>
+        </div>
+
+        <div id="tasbih-page" class="page">
+            <div class="section-title"><i class="fa-solid fa-beads"></i> المسبحة الإلكترونية الذكية</div>
+            <div class="premium-card tasbih-wrapper">
+                <div class="tasbih-display" id="counter-num">0</div>
+                <div class="tasbih-target" id="tasbih-phrase">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</div>
+                <div class="circle-clicker" onclick="pressTasbih()">
+                    <i class="fa-solid fa-fingerprint"></i>
+                </div>
+                <button class="reset-btn" onclick="resetTasbih()"><i class="fa-solid fa-rotate-left"></i> إعادة تعيين</button>
+            </div>
+
+            <div class="section-title"><i class="fa-solid fa-sun"></i> حصن المسلم الأساسي</div>
+            <div class="content-card">
+                <h4>أذكار الصباح</h4>
+                <p>"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ."</p>
+            </div>
+            <div class="content-card">
+                <h4>أذكار المساء</h4>
+                <p>"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ."</p>
+            </div>
+        </div>
+
+        <div id="duas-hadith-page" class="page">
+            <div class="section-title"><i class="fa-solid fa-hands-praying"></i> جوامع الأدعية الموسعة</div>
+            <div class="content-card">
+                <h4>من دعاء القرآن الكريم</h4>
+                <p>"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ."</p>
+            </div>
+            <div class="content-card">
+                <h4>دعاء الفرج وإزالة الهم</h4>
+                <p>"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ."</p>
+            </div>
+            <div class="content-card">
+                <h4>دعاء طلب الرزق والبركة</h4>
+                <p>"اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ."</p>
+            </div>
+
+            <div class="section-title" style="margin-top:25px;"><i class="fa-solid fa-book"></i> الأحاديث النبوية الصحيحة</div>
+            <div class="content-card">
+                <h4>حديث في حسن الخلق</h4>
+                <p>قال رسول الله ﷺ: "إِنَّ مِنْ أَحَبِّكُمْ إِلَيَّ وَأَقْرَبِكُمْ مِنّ
