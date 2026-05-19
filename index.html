@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تطبيق خُطى - النسخة الشاملة الموسعة</title>
+    <title>تطبيق خُطى - النسخة المحسنة الشاملة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-dark: #070a12; /* أسود ملكي عميق */
@@ -19,18 +23,18 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            padding-bottom: 90px;
+            padding-bottom: 95px;
             min-height: 100vh;
         }
 
-        /* الهيدر العلوي الملكي */
+        /* الهيدر العلوي الملكي المحسن */
         header {
             background: linear-gradient(180deg, #111827, #070a12);
             padding: 25px 20px;
@@ -39,34 +43,45 @@
             box-shadow: 0 4px 25px var(--accent-glow);
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         header h1 {
-            font-size: 36px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 38px;
             color: var(--accent-gold);
             font-weight: 800;
             text-shadow: 0 0 15px var(--accent-glow);
             margin-bottom: 5px;
         }
 
-        /* حاوية التاريخ الهجري */
+        /* حاوية التاريخ الهجري المحسنة */
         .date-container {
             font-size: 14px;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 5px;
+            margin-top: 8px;
         }
 
         .date-badge {
-            background-color: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 6px 14px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(17, 24, 39, 0.8));
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 8px 16px;
+            border-radius: 50px;
             color: var(--accent-gold);
             font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .date-badge i {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
         }
 
         .container {
@@ -130,28 +145,49 @@
             font-size: 15px;
             outline: none;
             cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* تحسين مشغل المصحف الصوتي */
+        .audio-player-wrapper {
+            background: #1f2937;
+            padding: 12px;
+            border-radius: 14px;
+            margin-top: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         audio {
             width: 100%;
-            margin-top: 15px;
+            display: block;
             accent-color: var(--accent-gold);
         }
 
-        /* تصميم قسم قراءة القرآن الكريم المكتوب كاملاً */
+        /* تحسين خط وتصميم قسم قراءة القرآن الكريم المكتوب كاملاً */
         .quran-text-area {
-            background-color: #161e2e;
-            border-radius: 14px;
-            padding: 25px 20px;
-            max-height: 400px;
+            background-color: #151c2c;
+            border-radius: 16px;
+            padding: 25px 22px;
+            max-height: 420px;
             overflow-y: auto;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             text-align: center;
-            font-size: 22px;
-            line-height: 2.3;
-            color: #f8fafc;
-            font-family: 'Traditional Arabic', Tahoma, sans-serif;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
+            font-size: 25px; /* تكبير الخط لراحة العين */
+            line-height: 2.4;
+            color: #fcf8f2; /* لون مريح جداً للقراءة الطويلة */
+            font-family: 'Amiri', serif; /* الخط المصحفي المعتمد */
+            font-weight: 700;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+            text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+        }
+
+        /* تلوين أرقام الآيات بالذهبي */
+        .quran-text-area .ayah-num {
+            color: var(--accent-gold);
+            font-family: 'Cairo', sans-serif;
+            font-size: 18px;
+            margin: 0 4px;
+            font-weight: bold;
         }
 
         /* المسبحة الذكية */
@@ -161,388 +197,19 @@
         }
 
         .tasbih-display {
-            font-size: 48px;
+            font-size: 52px;
             color: var(--accent-gold);
             font-weight: 800;
             margin-bottom: 10px;
-            text-shadow: 0 0 10px var(--accent-glow);
+            text-shadow: 0 0 15px var(--accent-glow);
         }
 
         .tasbih-target {
-            font-size: 15px;
+            font-size: 16px;
             color: var(--text-muted);
             margin-bottom: 20px;
-        }
-
-        .circle-clicker {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #1f2937 0%, #111827 100%);
-            border: 3px solid var(--accent-gold);
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            color: var(--accent-gold);
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
-            transition: all 0.1s ease;
-        }
-
-        .circle-clicker:active {
-            transform: scale(0.95);
-            background: var(--accent-gold);
-            color: var(--bg-dark);
-        }
-
-        .reset-btn {
-            background: none;
-            border: 1px solid var(--text-muted);
-            color: var(--text-muted);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            margin-top: 15px;
-            cursor: pointer;
-        }
-
-        /* تنسيق كروت الأذكار والأدعية والأحاديث */
-        .content-card {
-            background-color: var(--card-bg);
-            border-right: 4px solid var(--accent-gold);
-            padding: 18px;
-            border-radius: 8px;
-            margin-bottom: 14px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-
-        .content-card h4 {
-            color: var(--accent-gold);
-            margin-bottom: 8px;
-            font-size: 16px;
             font-weight: 600;
         }
 
-        .content-card p {
-            font-size: 15px;
-            line-height: 1.7;
-            text-align: justify;
-        }
-
-        /* شريط التنقل السفلي المطور الخماسي */
-        .nav-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--card-bg);
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 0;
-            border-top: 2px solid var(--accent-gold);
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-            z-index: 1000;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-        }
-
-        .nav-item {
-            color: var(--text-muted);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 10px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            width: 20%;
-        }
-
-        .nav-item i {
-            font-size: 20px;
-            margin-bottom: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-item.active {
-            color: var(--accent-gold);
-        }
-
-        .nav-item.active i {
-            transform: translateY(-3px);
-            text-shadow: 0 0 12px var(--accent-glow);
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>خُطى</h1>
-        <div class="date-container">
-            <span class="date-badge" id="hijri-box"><i class="fa-solid fa-calendar-days"></i> جاري ضبط التاريخ الهجري...</span>
-        </div>
-    </header>
-
-    <div class="container">
-        
-        <div id="quran-audio-page" class="page active">
-            <div class="section-title"><i class="fa-solid fa-volume-high"></i> الاستماع للمصحف الشريف</div>
-            <div class="premium-card">
-                <div class="input-group">
-                    <label>اختر الشيخ والقارئ:</label>
-                    <select id="reciter-select" onchange="updateQuranAudio()">
-                        <option value="https://server8.mp3quran.net/afs/">مشاري العفاسي</option>
-                        <option value="https://server11.mp3quran.net/muaiqly/">ماهر المعيقلي</option>
-                        <option value="https://server10.mp3quran.net/basit_mjwd/">عبد الباسط عبد الصمد</option>
-                        <option value="https://server12.mp3quran.net/minsh/">محمد صديق المنشاوي</option>
-                        <option value="https://server6.mp3quran.net/shur/">سعود الشريم</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label>اختر السورة للاستماع:</label>
-                    <select id="surah-select" onchange="updateQuranAudio()">
-                        <option value="001">1. الفاتحة</option>
-                        <option value="002">2. البقرة</option>
-                        <option value="003">3. آل عمران</option>
-                        <option value="018">18. الكهف</option>
-                        <option value="036">36. يس</option>
-                        <option value="055">55. الرحمن</option>
-                        <option value="056">56. الواقعة</option>
-                        <option value="067">67. الملك</option>
-                        <option value="112">112. الإخلاص</option>
-                        <option value="113">113. الفلق</option>
-                        <option value="114">114. الناس</option>
-                    </select>
-                </div>
-                <audio id="quran-player" controls src="https://server8.mp3quran.net/afs/001.mp3"></audio>
-            </div>
-        </div>
-
-        <div id="quran-text-page" class="page">
-            <div class="section-title"><i class="fa-solid fa-book-open"></i> المصحف المكتوب كاملاً</div>
-            <div class="premium-card">
-                <div class="input-group">
-                    <label>اختر السورة من المصحف (114 سورة):</label>
-                    <select id="surah-text-select" onchange="loadFullSurahText(this.value)">
-                        </select>
-                </div>
-                <div class="quran-text-area" id="quran-text-box">
-                    اضغط واشتر السورة لتبدأ القراءة المباشرة...
-                </div>
-            </div>
-        </div>
-
-        <div id="tasbih-page" class="page">
-            <div class="section-title"><i class="fa-solid fa-beads"></i> المسبحة الإلكترونية الذكية</div>
-            <div class="premium-card tasbih-wrapper">
-                <div class="tasbih-display" id="counter-num">0</div>
-                <div class="tasbih-target" id="tasbih-phrase">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</div>
-                <div class="circle-clicker" onclick="pressTasbih()">
-                    <i class="fa-solid fa-fingerprint"></i>
-                </div>
-                <button class="reset-btn" onclick="resetTasbih()"><i class="fa-solid fa-rotate-left"></i> إعادة تعيين</button>
-            </div>
-
-            <div class="section-title"><i class="fa-solid fa-sun"></i> حصن المسلم والأذكار الأساسية</div>
-            <div class="content-card">
-                <h4>أذكار الصباح</h4>
-                <p>"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ."</p>
-            </div>
-            <div class="content-card">
-                <h4>أذكار المساء</h4>
-                <p>"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ."</p>
-            </div>
-        </div>
-
-        <div id="duas-hadith-page" class="page">
-            <div class="section-title"><i class="fa-solid fa-hands-praying"></i> جوامع الأدعية الموسعة</div>
-            <div class="content-card">
-                <h4>من دعاء القرآن الكريم</h4>
-                <p>"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ."</p>
-            </div>
-            <div class="content-card">
-                <h4>دعاء الفرج وإزالة الهم</h4>
-                <p>"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ."</p>
-            </div>
-            <div class="content-card">
-                <h4>دعاء طلب الرزق والبركة</h4>
-                <p>"اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ."</p>
-            </div>
-            <div class="content-card">
-                <h4>دعاء الشفاء للمريض</h4>
-                <p>"أَذْهِبِ الْبَاسَ رَبَّ النَّاسِ، وَاشْفِ أَنْتَ الشَّافِي، لَا شِفَاءَ إِلَّا شِفَاؤُكَ، شِفَاءً لَا يُغَادِرُ سَقَمًا."</p>
-            </div>
-
-            <div class="section-title" style="margin-top:25px;"><i class="fa-solid fa-book"></i> من الأحاديث النبوية الشريفة</div>
-            <div class="content-card">
-                <h4>حديث في حسن الخلق</h4>
-                <p>قال رسول الله ﷺ: "إِنَّ مِنْ أَحَبِّكُمْ إِلَيَّ وَأَقْرَبِكُمْ مِنِّي مَجْلِسًا يَوْمَ الْقِيَامَةِ أَحَاسِنَكُمْ أَخْلَاقًا." (رواه الترمذي)</p>
-            </div>
-            <div class="content-card">
-                <h4>حديث في فضل العلم</h4>
-                <p>قال رسول الله ﷺ: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ." (رواه مسلم)</p>
-            </div>
-            <div class="content-card">
-                <h4>حديث في فضل الصلاة على النبي</h4>
-                <p>قال رسول الله ﷺ: "مَنْ صَلَّى عَلَيَّ صَلَاةً وَاحِدَةً صَلَّى اللَّهُ عَلَيْهِ بِهَا عَشْرًا." (رواه مسلم)</p>
-            </div>
-            <div class="content-card">
-                <h4>حديث في أهمية الكلمة الطيبة</h4>
-                <p>قال رسول الله ﷺ: "وَالْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ." (متفق عليه)</p>
-            </div>
-        </div>
-
-        <div id="sira-page" class="page">
-            <div class="section-title"><i class="fa-solid fa-history"></i> السيرة النبوية العطرة</div>
-            <div class="content-card">
-                <h4>١. المولد والنشأة المباركة</h4>
-                <p>ولد الحبيب المصطفى محمد ﷺ في مكة المكرمة في عام الفيل، ونشأ يتيماً كريماً، وعُرف في صباه وشبابه بالصادق الأمين.</p>
-            </div>
-            <div class="content-card">
-                <h4>٢. نزول الوحي والبعثة</h4>
-                <p>نزل الوحي جبريل عليه السلام في غار حراء حين بلغ النبي ﷺ سن الأربعين، لتنطلق أعظم رسالة ربوية لهداية العالمين.</p>
-            </div>
-            <div class="content-card">
-                <h4>٣. الهجرة النبوية المباركة</h4>
-                <p>هاجر الرسول ﷺ إلى المدينة المنورة بعد اشتداد أذى قريش، حيث استقبله الأنصار وبنى المسجد النبوي الشريف كأول ركيزة للدولة الإسلامية.</p>
-            </div>
-        </div>
-
-    </div>
-
-    <nav class="nav-bar">
-        <button class="nav-item active" onclick="switchPage('quran-audio-page', this)"><i class="fa-solid fa-volume-high"></i>صوت</button>
-        <button class="nav-item" onclick="switchPage('quran-text-page', this)"><i class="fa-solid fa-book-open"></i>قراءة</button>
-        <button class="nav-item" onclick="switchPage('tasbih-page', this)"><i class="fa-solid fa-beads"></i>الأذكار</button>
-        <button class="nav-item" onclick="switchPage('duas-hadith-page', this)"><i class="fa-solid fa-hands-praying"></i>الأدعية</button>
-        <button class="nav-item" onclick="switchPage('sira-page', this)"><i class="fa-solid fa-history"></i>السيرة</button>
-    </nav>
-
-    <script>
-        // دالة التنقل بين الصفحات والاقسام الخمسة
-        function switchPage(pageId, element) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            element.classList.add('active');
-        }
-
-        // تحديث صوت السورة والقارئ
-        function updateQuranAudio() {
-            const reciter = document.getElementById('reciter-select').value;
-            const surah = document.getElementById('surah-select').value;
-            const player = document.getElementById('quran-player');
-            player.src = `${reciter}${surah}.mp3`;
-            player.play();
-        }
-
-        // مصفوفة أسماء السور الـ 114 لتوليد القائمة برمجياً وتوفير مساحة الكود
-        const surahNames = [
-            "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود",
-            "يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون",
-            "النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ",
-            "فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف",
-            "محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة",
-            "الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة",
-            "المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس",
-            "التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد",
-            "الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة",
-            "التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص",
-            "الفلق","الناس"
-        ];
-
-        // توليد قائمة الـ 114 سورة في خانة الاختيار تلقائياً عند فتح التطبيق
-        function generateSurahOptions() {
-            const selectEl = document.getElementById('surah-text-select');
-            selectEl.innerHTML = '<option value="">-- اختر السورة للقراءة --</option>';
-            surahNames.forEach((name, index) => {
-                let surahNum = index + 1;
-                let option = document.createElement('option');
-                option.value = surahNum;
-                option.innerText = `${surahNum}. سورة ${name}`;
-                selectEl.appendChild(option);
-            });
-        }
-
-        // جلب نص السورة كاملاً بشكل فوري ومباشر من المصحف الرقمي العالمي الآمن
-        async function loadFullSurahText(surahNumber) {
-            if (!surahNumber) return;
-            const textBox = document.getElementById('quran-text-box');
-            textBox.innerText = "جاري تحميل السورة الكريمة من المصحف... 📖";
-            
-            try {
-                const response = await fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}`);
-                const data = await response.json();
-                if (data.code === 200) {
-                    let fullText = "";
-                    // دمج الآيات مع إظهار أرقام الآيات بشكل فخم
-                    data.data.ayahs.forEach(ayah => {
-                        fullText += `${ayah.text} ﴿${ayah.numberInSurah}﴾ `;
-                    });
-                    textBox.innerText = fullText;
-                } else {
-                    textBox.innerText = "فشل في تحميل السورة. يرجى التحقق من اتصال الهاتف.";
-                }
-            } catch (err) {
-                textBox.innerText = "فشل في جلب النص. يرجى المحاولة مرة أخرى.";
-            }
-        }
-
-        // منطق العداد الذكي للمسبحة
-        let count = 0;
-        const phrases = ["سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", "الْحَمْدُ لِلَّهِ", "لَا إِلَهَ إِلَّا اللَّهُ", "اللَّهُ أَكْبَرُ"];
-        let phraseIndex = 0;
-
-        function pressTasbih() {
-            count++;
-            document.getElementById('counter-num').innerText = count;
-            if (navigator.vibrate) navigator.vibrate(45); // اهتزاز فيدباك عند الضغط
-            
-            if (count % 33 === 0) {
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                document.getElementById('tasbih-phrase').innerText = phrases[phraseIndex];
-                if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
-            }
-        }
-
-        function resetTasbih() {
-            count = 0;
-            phraseIndex = 0;
-            document.getElementById('counter-num').innerText = count;
-            document.getElementById('tasbih-phrase').innerText = phrases[0];
-        }
-
-        // جلب التاريخ الهجري الحي المضبوط بدقة وعرض اسم اليوم والشهر بالعربية
-        async function fetchHijriDate() {
-            try {
-                const today = new Date();
-                const day = String(today.getDate()).padStart(2, '0');
-                const month = String(today.getMonth() + 1).padStart(2, '0');
-                const year = today.getFullYear();
-                
-                const response = await fetch(`https://api.aladhan.com/v1/gregorianToHijri/${day}-${month}-${year}`);
-                const data = await response.json();
-                
-                if (data.code === 200) {
-                    const h = data.data.hijri;
-                    const dayNameAr = h.weekday.ar; 
-                    const monthNameAr = h.month.ar; 
-                    document.getElementById('hijri-box').innerHTML = `<i class="fa-solid fa-calendar-days"></i> ${dayNameAr}، ${h.day} ${monthNameAr} ${h.year} هـ`;
-                }
-            } catch (err) {
-                document.getElementById('hijri-box').innerHTML = `<i class="fa-solid fa-calendar-days"></i> الثلاثاء، ٢ ذو الحجة ١٤٤٧ هـ`;
-            }
-        }
-
-        // تشغيل الوظائف الأساسية عند تحميل التطبيق بالكامل
-        window.onload = function() {
-            fetchHijriDate();
-            generateSurahOptions();
-        };
-    </script>
-</body>
-</html>
+        .circle-clicker {
+            width:
